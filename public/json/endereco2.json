@@ -1,0 +1,22 @@
+[
+    {
+	    "cliente": "Anderson Morais",
+        "endereco": "Rua Antonio Duarte",
+        "numero": "1627",
+        "bairro": "centro educacional",
+        "cep": "79750000",
+        "cidade": "nova andradina",
+        "uf": "MS",
+        "observacao": "Formatação"
+    },
+    {
+        "cliente": "Gustavo Henrique",
+        "endereco": "Onofre Gonçalves Lopes",
+        "numero": "1529",
+        "bairro": "centro",
+        "cep": "79750000",
+        "cidade": "nova andradina",
+        "uf": "MS",
+        "observacao": "Formatação"
+    }
+]

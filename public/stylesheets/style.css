@@ -1,0 +1,81 @@
+body{
+	background: #eee;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main{
+	flex: 1 0 auto;
+}
+
+label{
+	color: #00bcd4;
+	font-size: 20px;
+}
+
+li{
+	color: black;
+}
+
+#titulo{
+	text-align: center;
+	width: 100%;
+	margin-top: 0;
+	padding: 0;
+	height: 55px;
+	line-height: 55px;
+	font-size: 3em;
+	position: absolute;
+}
+
+#abrir-mapa{
+	transform: rotate(90deg);
+	margin-right: 10px;
+}
+
+#mapa{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.salvou{
+	/*margin-bottom: 15px;*/
+	background: #00bcd4;
+}
+
+#opcoes ul{
+	position: absolute;
+	float: left;
+	margin: 0;
+	bottom: 0;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+#opcoes ul li{
+	width: 50%;
+	float: left;
+	height: 50px;
+}
+
+#opcoes ul li a{
+	float: left;
+	width: 48px;
+	margin: 0 auto;
+	height: 48px;
+}
+
+#menu-mapa{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
