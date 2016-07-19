@@ -1,40 +1,38 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express')
+  , load = require('express-load')
+  , bodyParser = require('body-parser')
+  , cookieParser = require('cookie-parser')
+  , logger = require('morgan')  
+  , app = express()
+  , server = require('http').Server(app)
+  , Mongoose = require('mongoose')
+  , path = require('path')
+;
 
-var routes = require('./routes/index');
-//var javascripts = require('./javascripts/mapa.js');
-
-var Mongoose = require('mongoose');
-var db = Mongoose.connection;
-
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-db.on('error', console.error);
-db.once('open', function() {
-  console.log('Conectado ao MongoDB.')
-  
-});
-
-Mongoose.connect('mongodb://127.0.0.1:27017/gra');
-
+global.db = Mongoose.connect('mongodb://127.0.0.1:27017/gra');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-//app.use('/mapa', javascripts);
+//db conection
+/*db.on('error', console.error);
+db.once('open', function() {
+  console.log('Conectado ao MongoDB.')
+  
+});*/
+
+load('models')
+  .then('controllers')
+  .then('routes')
+  .into(app)
+;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -67,5 +65,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
+
+server.listen(1234, function(){
+  console.log("server rodando corretamente");
+});
 
 module.exports = app;

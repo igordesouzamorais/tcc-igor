@@ -1,7 +1,3 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
-
 //variaveis globais
 
 var mapa;
@@ -171,6 +167,3 @@ function getJsonStorage (chave){
 
 //iniciaza o mapa
 google.maps.event.addDomListener(window, 'load', getLocation);
-
-
-module.exports = router;
