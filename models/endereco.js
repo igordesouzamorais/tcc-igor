@@ -1,7 +1,9 @@
 module.exports = function (app) {
+
+	var db = require('../middleware/db')();
 	var Schema = require('mongoose').Schema;
 
-	var endereco = Schema({
+	var enderecoSchema = new Schema({
 	  cliente: String,
 	  endereco: String,
 	  numero: String,
@@ -10,8 +12,8 @@ module.exports = function (app) {
 	  cidade: String,
 	  uf: String,
 	  observacao: String,
-	  localizacao: {}
+	  localizacao: Array
 	});
 
-	return db.model('enderecos', endereco);
+	return db.model('enderecos', enderecoSchema);
 };

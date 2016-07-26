@@ -4,7 +4,8 @@ module.exports = function(app) {
       res.render('index');
     },
     mapa: function(req, res) {
-    	res.render('mapa');
+    	var endereco = app.models.endereco;
+    	res.render('mapa', {'endereco':endereco});
     }
   };
 
