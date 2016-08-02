@@ -4,6 +4,5 @@ module.exports = function(app) {
 
   app.get('/', home.index);
   app.get('/mapa', home.mapa);
-  app.post('/upload', home.upload);
   
 };
