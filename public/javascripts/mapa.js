@@ -41,12 +41,30 @@ function carregarPontos() {
     type: 'GET',
     dataType: 'json',
     success: function(json){
-        converteEndereco(json);
+        //converteEndereco(json);
+        //console.log(json);
+        salvaBanco(json);
     },
     error: function(erro){
         console.log('erro na função carrega pontos' + erro);
       }
   }); 
+}
+
+function salvaBanco (valores){
+  var novo = JSON.stringify(valores);
+  $.ajax({
+    type: "POST",
+    url: "/upload",
+    data: {valor: novo},
+    //dataType: "json",
+    success: function () {
+       console.log('deu certo');
+    },
+    error: function(erro){
+      console.log('erro na funcao salvaBanco' + erro);
+    }
+  });
 }
 
 //comverte o endereco em latitude e longitude e depois seta esse ponto no mapa
