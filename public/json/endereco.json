@@ -1,5 +1,6 @@
 [
     {
+        "id":"1",
 	    "cliente": "igor de souza morais",
         "endereco": "rua melvin jones",
         "numero": "2353",
@@ -7,9 +8,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
     {
+        "id":"2",
 	    "cliente": "Fernando Gutendorfer",
         "endereco": "Rua Elizabeth Robiano",
         "numero": "350",
@@ -17,9 +20,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
     {
+        "id":"3",
 	    "cliente": "Marco Véi",
         "endereco": "Rua da saudade",
         "numero": "836",
@@ -27,9 +32,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
     {
+        "id":"4",
 	    "cliente": "Maurici",
         "endereco": "rua santa lucia",
         "numero": "2179",
@@ -37,9 +44,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
     {
+        "id":"5",
 	    "cliente": "Anderson Morais",
         "endereco": "Rua Antonio Duarte",
         "numero": "1627",
@@ -47,9 +56,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
     {
+        "id":"6",
 	    "cliente": "Wanderlei",
         "endereco": "Rua Ineri Perigo",
         "numero": "1464",
@@ -57,9 +68,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
     {
+        "id":"7",
         "cliente": "Maurici Antes",
         "endereco": "avenida eulenir de oliveira lima",
         "numero": "639",
@@ -67,9 +80,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
 	{
+        "id":"8",
         "cliente": "Moises Bahia",
         "endereco": "Elisabeth Rubiano",
         "numero": "1631",
@@ -77,9 +92,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
 	{
+        "id":"9",
         "cliente": "Gustavo Henrique",
         "endereco": "Onofre Gonçalves Lopes",
         "numero": "1529",
@@ -87,9 +104,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
 	{
+        "id":"10",
         "cliente": "Elio Perigo",
         "endereco": "andré moya peres",
         "numero": "630",
@@ -97,9 +116,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     },
 	{
+        "id":"11",
         "cliente": "Elan Diego",
         "endereco": "Pedro Valentim Pinto",
         "numero": "305",
@@ -107,6 +128,7 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação"
+        "observacao": "Formatação",
+        "data": "08/06/2016"
     }
 ]

@@ -27,6 +27,7 @@ function initialize(position){
   setPonto(position.coords.latitude, position.coords.longitude, "Eu estou aqui!");
 
   carregarPontos();
+  buscarCadastrados();
   //getLocation();
   //var way = [{location: new google.maps.LatLng(-22.26016869845083,-53.347003729858386)}, {location: new google.maps.LatLng(-22.25023909514765,-53.353011878051745)}, {location: new google.maps.LatLng(-22.249285816186703,-53.337304862060535)},  {location: new google.maps.LatLng(-22.241341572534918,-53.34786203674315)}, {location: new google.maps.LatLng(-22.253813833459052,-53.36442735961913)}, {location: new google.maps.LatLng(-22.246505382156887,-53.347003729858386)}];
   //geraRota(new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163), listaEnderecos);
@@ -57,7 +58,6 @@ function salvaBanco (valores){
     type: "POST",
     url: "/upload",
     data: {valor: novo},
-    //dataType: "json",
     success: function () {
        console.log('deu certo');
     },
@@ -65,6 +65,22 @@ function salvaBanco (valores){
       console.log('erro na funcao salvaBanco' + erro);
     }
   });
+}
+
+function buscarCadastrados(){
+  console.log("chegou na busca dos cadastrados");
+  $.ajax({
+    url: '/enderecos',
+    type: 'GET',
+    dataType: 'json',
+    success: function(valores){
+        console.log("chegou no ajax do buscar cadastrados");
+        converteEndereco(valores);
+    },
+    error: function(erro){
+        console.log('erro na função buscar cadastrados' + erro);
+      }
+  });   
 }
 
 //comverte o endereco em latitude e longitude e depois seta esse ponto no mapa
@@ -87,10 +103,7 @@ function converteEndereco(enderecos) {
         console.log('Erro ao converter endereço: ' + status);
       }
     });
-    console.log(endereco);
   });
-
-  //console.log(listaEnderecos);
 }
 
 function setPonto (latitude , longitude, titulo){
