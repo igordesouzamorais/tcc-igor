@@ -15,8 +15,14 @@ $(document).ready(function() {
   	});
 
   	$('#salvar').on("click", function (){
-  		setJsonStorage("json", $("#caminho").val());
-  		Materialize.toast('<span class="center-align cyan">Caminho Salvo com sucesso!</span>', 3000, 'salvou');
+  		if ($("#caminho").val() != ""){
+	  		setJsonStorage("json", $("#caminho").val());
+	  		Materialize.toast('<span class="center-align cyan">Caminho Salvo com sucesso!</span>', 3000, 'salvou');
+  		}
+  		else{
+  			alert("Você não colocou o caminho do JSON");
+  			$('#caminho').val(getJsonStorage('json'));
+  		}
   	});
 
 	/*$("#configs").on("click", function(){

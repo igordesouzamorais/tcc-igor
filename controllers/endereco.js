@@ -1,5 +1,6 @@
 module.exports = function(app) {
   var enderecoController = {
+
     upload: function(req, res){
       var valores = JSON.parse(req.body.valor);
       var e = app.models.endereco;
@@ -43,6 +44,20 @@ module.exports = function(app) {
         });
         
         res.json(lista);
+      });
+    },
+    atualizar: function (req, res) {
+      console.log("entrou no metodo atualizar");
+
+      var id = req.body._id;
+      var e = app.models.endereco;
+      e.findOne({_id: id}, function (erro, valor) {
+        valor.lat = req.body.lat;
+        valor.lng = req.body.lng;
+
+        valor.save(function(sucesso, erro){
+          if (erro) console.log(erro);
+        });
       });
     }
   };

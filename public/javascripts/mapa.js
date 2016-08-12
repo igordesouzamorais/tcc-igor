@@ -16,23 +16,13 @@ function initialize(position){
   centro = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   var mapProp = {
     center: centro,
-    zoom: 16,
+    zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   mapa = new google.maps.Map(document.getElementById("mapa"), mapProp);
   directionsDisplay.setMap(mapa);
 
-  //marcar o centro do mapa
-  //sempre será o valor que veio da geolocalização
-  setPonto(position.coords.latitude, position.coords.longitude, "Eu estou aqui!");
-
   carregarPontos();
-  buscarCadastrados();
-  //getLocation();
-  //var way = [{location: new google.maps.LatLng(-22.26016869845083,-53.347003729858386)}, {location: new google.maps.LatLng(-22.25023909514765,-53.353011878051745)}, {location: new google.maps.LatLng(-22.249285816186703,-53.337304862060535)},  {location: new google.maps.LatLng(-22.241341572534918,-53.34786203674315)}, {location: new google.maps.LatLng(-22.253813833459052,-53.36442735961913)}, {location: new google.maps.LatLng(-22.246505382156887,-53.347003729858386)}];
-  //geraRota(new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163), listaEnderecos);
-
-  //matrix();
 }
 
 //le o arquivo json que foi informado na configuração
@@ -42,13 +32,13 @@ function carregarPontos() {
     type: 'GET',
     dataType: 'json',
     success: function(json){
-        //converteEndereco(json);
-        //console.log(json);
         salvaBanco(json);
     },
     error: function(erro){
-        console.log('erro na função carrega pontos' + erro);
+        console.log(erro);
       }
+  }).done(function(){
+    buscarCadastrados(); //após salvar todos os enderecos chama a funcao buscar cadastrados
   }); 
 }
 
@@ -68,18 +58,20 @@ function salvaBanco (valores){
 }
 
 function buscarCadastrados(){
-  console.log("chegou na busca dos cadastrados");
   $.ajax({
     url: '/enderecos',
     type: 'GET',
     dataType: 'json',
     success: function(valores){
-        console.log("chegou no ajax do buscar cadastrados");
+        //console.log("chegou no ajax do buscar cadastrados");
         converteEndereco(valores);
     },
     error: function(erro){
         console.log('erro na função buscar cadastrados' + erro);
       }
+  }).done(function (valores) {
+    console.log("proximo passo a ser feito apos atualizar a latitude e longitude no banco de dados");
+    geraRota(valores);
   });   
 }
 
@@ -89,15 +81,23 @@ function converteEndereco(enderecos) {
   enderecos.forEach(function(endereco, index){
     geocoder.geocode( { 'address': endereco.endereco + ', ' + endereco.numero + ', ' + endereco.cidade + ', ' + endereco.uf}, function(resultado, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        var marker = new google.maps.Marker({
-              map: mapa,
-              position: resultado[0].geometry.location
-        });
+        //setPonto(resultado[0].geometry.location.lat(), resultado[0].geometry.location.lng(), endereco.observacao);
+
+        endereco.lat = resultado[0].geometry.location.lat();
+        endereco.lng = resultado[0].geometry.location.lng();
         
-        endereco.localizacao = resultado[0].geometry.location;
-
-        console.log(endereco);
-
+        //envia a latitude e longitude convertida para ser salva no banco de dados
+        $.ajax({
+          type: "PUT",
+          url: "/atualizar/" + endereco._id,
+          data: endereco,
+          success: function () {
+             console.log("sucesso na função de converte enderecos");
+          },
+          error: function(erro){
+            console.log('erro na funcao converte endereco' + erro);
+          }
+        });
       }
       else {
         console.log('Erro ao converter endereço: ' + status);
@@ -106,27 +106,30 @@ function converteEndereco(enderecos) {
   });
 }
 
-function setPonto (latitude , longitude, titulo){
+function setPonto (latitude , longitude){
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(latitude , longitude),
-    title: titulo,
     map: mapa
   });
 }
 
-function setPontoEndereco (endereco, titulo){
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(endereco),
-    title: titulo,
-    map: mapa
-  });
-}
+function geraRota (valores) {
+  console.log("exibindo as rotas no mapa");
 
-function geraRota (origem, destino, waypts) {
+  var waypts = [];
+
+  valores.forEach(function (valor, index) {
+    var temp = {};
+    temp.location = new google.maps.LatLng(valor.lat, valor.lng);
+    //temp.stopover = true;
+    waypts.push(temp);
+  });
+
   var request = {
-    origin: origem,
-    destination: destino,
+    origin: centro,
+    destination: new google.maps.LatLng(-22.24768725649605, -53.35948604999999),
     waypoints: waypts,
+    optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
   directionsService.route(request, function(response, status) {
@@ -145,11 +148,8 @@ function getLocation() {
   }
 }
 
-function matrix (origin, destinos) {
+function matrix (enderecos) {
     
-  var origin = [new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163), new google.maps.LatLng(-22.248014767478885,-53.34794786743163)];
-  var destinos = [new google.maps.LatLng(-22.26016869845083,-53.347003729858386), new google.maps.LatLng(-22.25023909514765,-53.353011878051745), new google.maps.LatLng(-22.249285816186703,-53.337304862060535), new google.maps.LatLng(-22.241341572534918,-53.34786203674315), new google.maps.LatLng(-22.253813833459052,-53.36442735961913), new google.maps.LatLng(-22.246505382156887,-53.347003729858386)];
-
   var service = new google.maps.DistanceMatrixService();
   service.getDistanceMatrix(
     {

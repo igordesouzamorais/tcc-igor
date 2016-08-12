@@ -12,7 +12,9 @@ module.exports = function (app) {
 	  cidade: String,
 	  uf: String,
 	  observacao: String,
-	  data: Date
+	  data: Date,
+	  lat: String,
+	  lng: String
 	});
 
 	return db.model('Endereco', enderecoSchema);
