@@ -5,12 +5,15 @@ var directionsService = new google.maps.DirectionsService();
 var directionsDisplay;
 var centro;
 var geocoder;
-var listaEnderecos = [];
-
+var markerArray = [];
+var stepDisplay;
+var icone = 'images/icon-map24.png';
 
 function initialize(position){
 
-  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsDisplay = new google.maps.DirectionsRenderer({
+      suppressMarkers: true // esconde os marcadores padrão do directions service
+  });
   geocoder = new google.maps.Geocoder();
 
   centro = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -21,8 +24,18 @@ function initialize(position){
   };
   mapa = new google.maps.Map(document.getElementById("mapa"), mapProp);
   directionsDisplay.setMap(mapa);
+  stepDisplay = new google.maps.InfoWindow();
 
   carregarPontos();
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(initialize);
+  }
+  else {
+    alert("Geolocation is not supported by this browser.");
+  }
 }
 
 //le o arquivo json que foi informado na configuração
@@ -64,7 +77,7 @@ function buscarCadastrados(){
     dataType: 'json',
     success: function(valores){
         //console.log("chegou no ajax do buscar cadastrados");
-        converteEndereco(valores);
+        //converteEndereco(valores);
     },
     error: function(erro){
         console.log('erro na função buscar cadastrados' + erro);
@@ -106,28 +119,29 @@ function converteEndereco(enderecos) {
   });
 }
 
-function setPonto (latitude , longitude){
+//inativa no momento
+/*function setPonto (latitude , longitude){
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(latitude , longitude),
     map: mapa
   });
-}
+}*/
 
 function geraRota (valores) {
   console.log("exibindo as rotas no mapa");
 
+  clearMarkers();
   var waypts = [];
-
   valores.forEach(function (valor, index) {
     var temp = {};
-    temp.location = new google.maps.LatLng(valor.lat, valor.lng);
-    //temp.stopover = true;
+    temp.location = valor.endereco + ', ' + valor.numero + ', ' + valor.cidade + ', ' + valor.uf;
+    temp.stopover = true;
     waypts.push(temp);
   });
 
   var request = {
     origin: centro,
-    destination: new google.maps.LatLng(-22.24768725649605, -53.35948604999999),
+    destination: centro,
     waypoints: waypts,
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
@@ -135,16 +149,56 @@ function geraRota (valores) {
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
+
+      //gerar os marcadores personalizados com as informações necessárias para a aplicação
+      showSteps(response);
+      //setarMarcadores(valores);
     }
   });
 }
 
-function getLocation() {
-  if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(initialize);
+
+/*function setarMarcadores(valores){
+  console.log("entrou no setar marcadores");
+  
+  console.log(valores);
+
+  valores.forEach(function(valor, index){
+    console.log(valor.lat + '  ' + valor.lng);
+    var marker = new google.maps.Marker({
+      position: {lat: valor.lat, lng: valor.lng},
+      map: mapa,
+      icon: icone
+    });
+    //attachInstructionText(marker, valor.endereco + ', ' + valor.numero + ', ' + valor.cidade + ', ' + valor.uf);
+    //markerArray[i] = marker;
+  });
+}*/
+
+function showSteps(directionResult) {
+  var myRoute = directionResult.routes[0].legs;
+
+  for (var i = 0; i < myRoute.length; i++) {
+      var marker = new google.maps.Marker({
+        position: myRoute[i].end_location,
+        map: mapa,
+        icon: icone
+      });
+      attachInstructionText(marker, 'Texto de teste apenas');
+      markerArray[i] = marker;
   }
-  else {
-    alert("Geolocation is not supported by this browser.");
+}
+
+function attachInstructionText(marker, text) {
+  google.maps.event.addListener(marker, 'click', function() {
+    stepDisplay.setContent(text);
+    stepDisplay.open(mapa, marker);
+  });
+}
+
+function clearMarkers (){
+  for (i = 0; i < markerArray.length; i++) {
+    markerArray[i].setMap(null);
   }
 }
 
