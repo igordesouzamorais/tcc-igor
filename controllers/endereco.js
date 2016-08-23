@@ -2,31 +2,31 @@ module.exports = function(app) {
   var enderecoController = {
 
     upload: function(req, res){
-      var valores = JSON.parse(req.body.valor);
+      var valor = req.body;
       var e = app.models.endereco;
-      valores.forEach(function(valor, i){
+      e.findOne({id_endereco:valor.id}, function(erro, resultado){
+        //verifica se o endereco ja esta cadastrado no banco de dados, se nao estiver será feito o cadastro
+        if(!resultado){
+         var endereco = new app.models.endereco;
+          endereco.id_endereco = valor.id;
+          endereco.cliente = valor.cliente;
+          endereco.endereco = valor.endereco;
+          endereco.numero = valor.numero;
+          endereco.bairro = valor.bairro;
+          endereco.cep = valor.cep;
+          endereco.cidade = valor.cidade;
+          endereco.uf = valor.uf;
+          endereco.observacao = valor.observacao;
+          endereco.data = valor.data;
+          endereco.lat = valor.lat;
+          endereco.lng = valor.lng;
 
-        e.findOne({id_endereco:valor.id}, function(erro, resultado){
-          //verifica se o endereco ja esta cadastrado no banco de dados, se nao estiver será feito o cadastro
-          if(!resultado){
-           var endereco = new app.models.endereco;
-            endereco.id_endereco = valor.id;
-            endereco.cliente = valor.cliente;
-            endereco.endereco = valor.endereco;
-            endereco.numero = valor.numero;
-            endereco.bairro = valor.bairro;
-            endereco.cep = valor.cep;
-            endereco.cidade = valor.cidade;
-            endereco.uf = valor.uf;
-            endereco.observacao = valor.observacao;
-            endereco.data = valor.data;
-
-            endereco.save(function(sucess, error){
-              if (error) console.log(error);
-            }); 
-          }
-        });        
-      });
+          endereco.save(function(sucess, error){
+            if (error) console.log(error);
+          }); 
+        }
+        res.redirect('/mapa');
+      });    
     },
     buscar: function (req, res){
       var e = app.models.endereco;
@@ -44,20 +44,6 @@ module.exports = function(app) {
         });
         
         res.json(lista);
-      });
-    },
-    atualizar: function (req, res) {
-      console.log("entrou no metodo atualizar");
-
-      var id = req.body._id;
-      var e = app.models.endereco;
-      e.findOne({_id: id}, function (erro, valor) {
-        valor.lat = req.body.lat;
-        valor.lng = req.body.lng;
-
-        valor.save(function(sucesso, erro){
-          if (erro) console.log(erro);
-        });
       });
     }
   };
