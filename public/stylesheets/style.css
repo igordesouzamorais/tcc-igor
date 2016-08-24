@@ -104,3 +104,10 @@ h2{
 .gm-style-iw {
 	height: auto;
 }
+
+
+/* label color */
+label{
+ color: black;
+ margin-top: 5px;
+}

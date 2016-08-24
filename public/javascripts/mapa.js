@@ -5,11 +5,11 @@ var directionsService = new google.maps.DirectionsService();
 var directionsDisplay;
 var centro;
 var geocoder;
-var markerArray = [];
-var stepDisplay = new google.maps.InfoWindow({
-  maxWidth: 250
+var markerArray = []; //array com todos os marcadores do mapa
+var stepDisplay = new google.maps.InfoWindow({ //caixa de informações dos marcadores
+  maxWidth: 250 //setando o tamanho maximo do infowindow
 });
-var icone = 'images/icon-map24.png';
+var icone = 'images/icon-map24.png'; //icone padrao dos marcadores
 
 function initialize(position){
 
@@ -18,7 +18,7 @@ function initialize(position){
   });
   geocoder = new google.maps.Geocoder();
 
-  centro = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  centro = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); //recebendo o centro de acordo com a sua posição atual
   var mapProp = {
     center: centro,
     zoom: 15,
@@ -114,7 +114,6 @@ function geraRota (valores) {
       directionsDisplay.setDirections(response);
 
       //gerar os marcadores personalizados com as informações necessárias para a aplicação
-      //showSteps(response);
       setarMarcadores(valores);
     }
   });
@@ -122,10 +121,6 @@ function geraRota (valores) {
 
 
 function setarMarcadores(valores){
-  console.log("entrou no setar marcadores");
-  
-  console.log(valores);
-
   valores.forEach(function(valor, index){
     var pos = {lat: parseFloat(valor.lat), lng: parseFloat(valor.lng)};
     var marker = new google.maps.Marker({
@@ -133,10 +128,12 @@ function setarMarcadores(valores){
       map: mapa,
       icon: icone
     });
+
     var html = "<h1 class='titulo-marcador'>" + valor.cliente + '</h1>' + 
     "<div id='conteudo-marcador'>" + 
     '<h2>Endereço: </h2><div>' + valor.endereco + ', ' + valor.numero + ', ' + valor.cidade + ', ' + valor.uf + '</div>' + 
     '<h2>Serviço a ser Feito: </h2><div>' + valor.observacao + '</div>' +
+    '<input type="checkbox" data-id-endereco="'+ valor.id_endereco + '" id="visita"' + ' /><label for="visita">Endereço Visitado ?</label>' +
     '</div>'
     setTextMarker(marker, html);
     markerArray[i] = marker;

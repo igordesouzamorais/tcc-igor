@@ -38,13 +38,26 @@ module.exports = function(app) {
 
         valores.forEach(function(valor, i){
           //comparacao para ver se dia, mes ou ano sao iguais
-          if ((d.getDate() == valor.data.getDate()) && (d.getMonth() == valor.data.getMonth()) && (d.getFullYear() == valor.data.getFullYear())){
+          if ((d.getDate() == valor.data.getDate()) && (d.getMonth() == valor.data.getMonth()) && (d.getFullYear() == valor.data.getFullYear()) && (valor.visitado == 'false')) {
             lista.push(valor);
           }
         });
         
         res.json(lista);
       });
+    },
+    atualizar: function (req, res) { //ao clica no campo visitado nesta funcao é feito a atualizao no banco de dados para informar que o endereco já foi visitado ou nao de acordo com o status do checkbox
+      var id = req.body.id;
+      var check = req.body.check;
+
+      var e = app.models.endereco;
+      e.findOne({id_endereco: id}, function (erro, valor) {
+        valor.visitado = check;
+        valor.save(function (sucess, erro) {
+          if (erro) console.log(erro);
+        });
+      });
+      res.send('ok');
     }
   };
 

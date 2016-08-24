@@ -2,7 +2,6 @@ $(document).ready(function() {
 
 	$('#caminho').val(getJsonStorage('json'));
 
-	// $(".abrir").sideNav();
 	$('.button-collapse').sideNav({
         menuWidth: 220, // Default is 240
         edge: 'left', // Choose the horizontal origin
