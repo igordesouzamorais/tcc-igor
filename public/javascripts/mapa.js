@@ -6,10 +6,13 @@ var directionsDisplay;
 var centro;
 var geocoder;
 var markerArray = []; //array com todos os marcadores do mapa
+var markerSelected;
 var stepDisplay = new google.maps.InfoWindow({ //caixa de informações dos marcadores
   maxWidth: 250 //setando o tamanho maximo do infowindow
 });
-var icone = 'images/icon-map24.png'; //icone padrao dos marcadores
+var icone = 'images/map/icon-map24.png'; //icone padrao dos marcadores
+var iconeVisitado = 'images/map/icon-map-visitado24.png'; //icone a ser usado após ser marcado a opção de visitado no checkbox
+var iconeUser = 'images/map/icon-map-me24.png';
 
 function initialize(position){
 
@@ -26,6 +29,14 @@ function initialize(position){
   };
   mapa = new google.maps.Map(document.getElementById("mapa"), mapProp);
   directionsDisplay.setMap(mapa);
+
+  var markerCenter = new google.maps.Marker({
+      position: centro,
+      map: mapa,
+      icon: iconeUser
+  });
+
+  setTextMarker(markerCenter, 'Você está aqui!');
 
   carregarPontos();
 }
@@ -136,7 +147,7 @@ function setarMarcadores(valores){
     '<input type="checkbox" data-id-endereco="'+ valor.id_endereco + '" id="visita"' + ' /><label for="visita">Endereço Visitado ?</label>' +
     '</div>'
     setTextMarker(marker, html);
-    markerArray[i] = marker;
+    markerArray.push(marker);
   });
 }
 
@@ -144,6 +155,8 @@ function setTextMarker(marker, text) {
   google.maps.event.addListener(marker, 'click', function() {
     stepDisplay.setContent(text);
     stepDisplay.open(mapa, marker);
+    markerSelected = marker;
+    console.log(markerSelected);
   });
 }
 
@@ -168,3 +181,27 @@ function getJsonStorage (chave){
 //iniciaza o mapa
 google.maps.event.addDomListener(window, 'load', getLocation);
 
+
+
+//esta parte é do tratamento do checkbox das infowindows
+$(document).on('click', 'input[type="checkbox"]', function(){
+  var id_endereco = $(this).data('idEndereco');
+  var checado = $(this).is(':checked');
+
+  //informa ao banco de dados se o endereco já foi visitado ou nao para quando atualizar o mapa ele nao voltar a aparecer
+  $.ajax({
+    type: "PUT",
+    url: "/atualiza/" + id_endereco,
+    data: {id: id_endereco, check: checado},
+    error: function(erro){
+      console.log('erro na funcao salvaBanco' + erro);
+    }
+  });
+
+  //ajuste do icone para visitado ou nao
+  if (checado){
+    markerSelected.setIcon(iconeVisitado);
+  }else{
+    markerSelected.setIcon(icone);
+  }
+});

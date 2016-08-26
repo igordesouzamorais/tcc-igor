@@ -46,7 +46,7 @@ module.exports = function(app) {
         res.json(lista);
       });
     },
-    atualizar: function (req, res) { //ao clica no campo visitado nesta funcao é feito a atualizao no banco de dados para informar que o endereco já foi visitado ou nao de acordo com o status do checkbox
+    atualizar: function (req, res) { //ao clicar no campo visitado nesta funcao é feito a atualizao no banco de dados para informar que o endereco já foi visitado ou nao de acordo com o status do checkbox
       var id = req.body.id;
       var check = req.body.check;
 
