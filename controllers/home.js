@@ -5,6 +5,9 @@ module.exports = function(app) {
     },
     mapa: function(req, res) {
     	res.render('mapa');
+    },
+    login: function (req, res){
+    	res.render('login');
     }
   };
 

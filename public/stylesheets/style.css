@@ -110,9 +110,13 @@ h2{
 	height: auto;
 }
 
-
 /* label color */
 label{
  color: black;
  margin-top: 5px;
+}
+
+/*tela de login*/
+#tela-login{
+	margin-top: 60px;
 }

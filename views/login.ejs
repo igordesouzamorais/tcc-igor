@@ -15,29 +15,25 @@
     <body id="index">
     <main>
       <header>
-        <nav id="menu" class="cyan">
-          <ul id="slide-out" class="side-nav">
-          	<li class="center">
-              <label for="caminho">Caminho JSON</label>
-              <input id="caminho" placeholder="Caminho JSON" type="text" class="validate">
-            </li>
-          	<li class="center">
-              <input type="button" data-activates="slide-out" value="Salvar" id="salvar" class="btn voltar cyan"></input>
-          	  <input type="button" data-activates="slide-out" value="Voltar" class="btn voltar cyan">
-            </li>
-          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse abrir"><i class="mdi-navigation-menu"></i></a>
-          <a href="#" class="brand-logo">GTA</a>
-          <a href="/mapa" id="abrir-mapa" title="Carregar Mapa" class="right"><i class="material-icons">navigation</i></a>
+        <nav id="menu-mapa" class="cyan">
+          <div class="nav-wrapper">
+            <ul>
+                <a href="#" class="brand-logo">Login</a>
+                <!--<li class="left"><a href="/" title="Voltar"><i class="material-icons">navigate_before</i></a></li>-->
+                <!--<li class="right"><a href="/mapa" title="Atualizar"><i class="material-icons">loop</i></a></li>-->
+            </ul>
+          </div>
         </nav>
       </header>
-      <!--<footer class="page-footer cyan">
-        <div class="footer-copyright">
-          <div class="container center">
-          2016 Copyright Igor Morais - TCC
-          </div>
-        </div>
-      </footer>-->
+      <div id="tela-login">
+        <form action="/login" method="post">
+          <label for="login">Login</label>
+          <input type="text" name="login">
+          <label for="senha">Senha</label>
+          <input type="password" name="senha">
+          <input type="submit" value="Logar">
+        </form>
+      </div>
 
     
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
