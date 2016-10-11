@@ -8,6 +8,10 @@ module.exports = function(app) {
     },
     login: function (req, res){
     	res.render('login');
+    },
+    logout: function (req, res){
+      req.logout();
+      res.redirect('/login');
     }
   };
 

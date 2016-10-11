@@ -19,7 +19,7 @@ conection.once('open', function() {
   console.log('Conectado ao MongoDB corretamente ...')  
 });
 
-db.connect('mongodb://127.0.0.1:27017/gra');
+db.connect('mongodb://127.0.0.1:27017/gta');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -37,7 +37,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { secure: true }
-}))
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -52,40 +52,8 @@ db.once('open', function() {
 load('models')
   .then('controllers')
   .then('routes')
-  .into(app)
-;
-
-//configuracao do passport
-
-var usuario = app.models.user;
-
-passport.use(new LocalStrategy({
-  usernameField: 'login',
-  passwordField: 'senha'
-},
-  function(username, password, done) {
-    usuario.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
-  }
-));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  usuario.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+  .then('middleware')
+  .into(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -144,7 +144,7 @@ function setarMarcadores(valores){
     "<div id='conteudo-marcador'>" + 
     '<h2>Endereço: </h2><div>' + valor.endereco + ', ' + valor.numero + ', ' + valor.cidade + ', ' + valor.uf + '</div>' + 
     '<h2>Serviço a ser Feito: </h2><div>' + valor.observacao + '</div>' +
-    '<input type="checkbox" data-id-endereco="'+ valor.id_endereco + '" id="visita"' + ' /><label for="visita">Endereço Visitado ?</label>' +
+    '<input type="checkbox" data-id-endereco="'+ valor.id_origen + '" id="visita"' + ' /><label for="visita">Endereço Visitado ?</label>' +
     '</div>'
     setTextMarker(marker, html);
     markerArray.push(marker);

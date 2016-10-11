@@ -24,16 +24,6 @@ $(document).ready(function() {
   		}
   	});
 
-	/*$("#configs").on("click", function(){
-		$("#panelOptions").trigger( "updatelayout" );
-		$("#json").val(getJsonStorage("json"));
-	});
-
-	
-	$("#refresh").on("click", function(){
-		window.location.reload();
-	});*/
-
 	function setJsonStorage (chave, valor){
 		localStorage.setItem(chave,valor);
 	}

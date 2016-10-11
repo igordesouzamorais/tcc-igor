@@ -4,11 +4,11 @@ module.exports = function(app) {
     upload: function(req, res){
       var valor = req.body;
       var e = app.models.endereco;
-      e.findOne({id_endereco:valor.id}, function(erro, resultado){
+      e.findOne({id_origen:valor.id_origen}, function(erro, resultado){
         //verifica se o endereco ja esta cadastrado no banco de dados, se nao estiver será feito o cadastro
         if(!resultado){
          var endereco = new app.models.endereco;
-          endereco.id_endereco = valor.id;
+          endereco.id_origen = valor.id_origen;
           endereco.cliente = valor.cliente;
           endereco.endereco = valor.endereco;
           endereco.numero = valor.numero;
@@ -51,7 +51,7 @@ module.exports = function(app) {
       var check = req.body.check;
 
       var e = app.models.endereco;
-      e.findOne({id_endereco: id}, function (erro, valor) {
+      e.findOne({id_origen: id}, function (erro, valor) {
         valor.visitado = check;
         valor.save(function (sucess, erro) {
           if (erro) console.log(erro);

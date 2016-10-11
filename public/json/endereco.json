@@ -1,6 +1,6 @@
 [
     {
-        "id":"5",
+        "id":"1",
         "cliente": "Anderson Morais",
         "endereco": "Rua Antonio Duarte",
         "numero": "1627",
@@ -8,11 +8,11 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação",
-        "data": "08/12/2016"
+        "observacao": "Formatação de Notebook",
+        "data": "10/04/2016"
     },
     {
-        "id":"1",
+        "id":"2",
 	    "cliente": "igor de souza morais",
         "endereco": "rua melvin jones",
         "numero": "2353",
@@ -20,20 +20,12 @@
         "cep": "79750000",
         "cidade": "nova andradina",
         "uf": "MS",
-        "observacao": "Formatação",
-        "data": "08/12/2016"
-    },
-    {
-        "id":"4",
-	    "cliente": "Maurici",
-        "endereco": "rua santa lucia",
-        "numero": "2179",
-        "bairro": "centro educacional",
-        "cep": "79750000",
-        "cidade": "nova andradina",
-        "uf": "MS",
-        "observacao": "Formatação",
-        "data": "08/12/2016"
+        "observacao": "Manutenção Impressora",
+        "data": "10/04/2016"
     }
     
 ]
+
+
+
+
