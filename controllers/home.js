@@ -11,7 +11,10 @@ module.exports = function(app) {
     },
     logout: function (req, res){
       req.logout();
-      res.redirect('/login');
+      res.redirect('/');
+    },
+    signup: function (req, res) {
+      res.render('signup');
     }
   };
 

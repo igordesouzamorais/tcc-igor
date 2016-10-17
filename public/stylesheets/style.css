@@ -16,6 +16,12 @@ main{
 	background-size: cover;
 }
 
+#index{
+	background-image: url(/images/bg_tcc3.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 label{
 	color: #00bcd4;
 	font-size: 20px;
@@ -132,8 +138,19 @@ label{
 	margin-top: 10px;
 }
 
+/*form signup*/
+#form-signup{
+	margin-top: 100px;
+}
 
-
+.logout{
+	width: 110px;
+	color: white !important;
+	margin: 0 auto !important;
+	height: 50px !important;
+	line-height: 50px !important;
+	margin-top: 15px !important;
+}
 
 /* label color */
    .input-field label {
