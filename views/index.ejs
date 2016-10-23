@@ -15,25 +15,27 @@
     <body id="index">
     <main>
       <header>
-        <nav id="menu" class="cyan">
+        <nav id="menu" class="blue darken-4">
           <ul id="slide-out" class="side-nav">
           	<li class="center">
               <label for="caminho">Caminho JSON</label>
               <input id="caminho" placeholder="Caminho JSON" type="text" class="validate">
             </li>
           	<li class="center">
-              <input type="button" data-activates="slide-out" value="Salvar" id="salvar" class="btn voltar cyan"></input>
-          	  <input type="button" data-activates="slide-out" value="Voltar" class="btn voltar cyan">
-              <!--<input type="button" data-activates="slide-out" value="Logout" class="btn voltar cyan">-->
+              <input type="button" data-activates="slide-out" value="Salvar" id="salvar" class="btn voltar blue darken-4"></input>
+          	  <input type="button" data-activates="slide-out" value="Voltar" class="btn voltar blue darken-4">
+              <!--<input type="button" data-activates="slide-out" value="Logout" class="btn voltar blue darken-4">-->
               <a href="/logout" class="voltar red darken-1 btn logout">Logout</a>
             </li>
           </ul>
           <a href="#" data-activates="slide-out" class="button-collapse abrir"><i class="mdi-navigation-menu"></i></a>
-          <a href="#" class="brand-logo">GTA</a>
+          <a href="/home" class="brand-logo logo">
+            <img src="/images/logo.png" alt="GTA">
+          </a>
           <a href="/mapa" id="abrir-mapa" title="Carregar Mapa" class="right"><i class="material-icons">navigation</i></a>
         </nav>
       </header>
-      <!--<footer class="page-footer cyan">
+      <!--<footer class="page-footer blue darken-4">
         <div class="footer-copyright">
           <div class="container center">
           2016 Copyright Igor Morais - TCC
