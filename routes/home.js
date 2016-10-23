@@ -4,11 +4,11 @@ var home = app.controllers.home;
 var passport = require('passport');
 
 var isAuthenticated = function (req, res, next) {
-	if (req.isAuthenticated()){
+	if (req.isAuthenticated())
     	return next();
-	}else{
-    	res.redirect('/');
-	}
+
+    res.redirect('/');
+
 }
 
 app.get('/', home.login);

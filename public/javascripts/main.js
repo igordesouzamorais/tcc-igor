@@ -16,7 +16,7 @@ $(document).ready(function() {
   	$('#salvar').on("click", function (){
   		if ($("#caminho").val() != ""){
 	  		setJsonStorage("json", $("#caminho").val());
-	  		Materialize.toast('<span class="center-align cyan">Caminho Salvo com sucesso!</span>', 3000, 'salvou');
+	  		Materialize.toast('<span>Caminho Salvo com sucesso!</span>', 2000, 'salvou');
   		}
   		else{
   			alert("Você não colocou o caminho do JSON");
