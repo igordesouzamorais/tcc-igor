@@ -19,6 +19,24 @@ body{
 	background-size: cover;
 }
 
+.flash-error{
+	font-family: 'Roboto';
+	text-align: center;
+	position: relative;
+	width: 240px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 5px;
+	background: #d32f2f;
+	margin: 0 auto;
+	margin-top: 10px;
+	font-size: 1.3em;
+	color: white;
+	transition: all easy-in-out 2s;
+	-webkit-transition: all ease-in-out 2s;
+	-moz-transition: all ease-in-out 2s;
+}
+
 /*TELA DE LOGIN*/
 #tela-login h1{
 	width: 150px;
@@ -140,9 +158,7 @@ label{
 	margin-top: 100px;
 }
 
-#tela-login form{
-	padding: 5%;
-	width: 100%;
+#tela-login form, #form-signup form{
 	width: 80%;
 	margin: 0 auto;
 }

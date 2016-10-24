@@ -1,8 +1,9 @@
 module.exports = function (app) {
 
-	var Mongoose = require('mongoose');
+	var mongoose = require('mongoose');
 
-	var enderecoSchema = new Mongoose.Schema({
+
+	var enderecoSchema = new mongoose.Schema({
 	  id_origen:{type: Number, required: true},
 	  cliente: {type: String, required: true},
 	  endereco: {type: String, required: true},

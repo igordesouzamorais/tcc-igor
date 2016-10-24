@@ -41,9 +41,15 @@
           </div>
 
           <div id="submit" class="center-align">
-            <input type="submit" class="btn blue darken-4 waves-effect waves-light" value="Entrar">
+            <input type="submit" class="z-depth-3 btn blue darken-4 waves-effect waves-light" value="Entrar">
+          </br>
+          </br>
+            <a href="/signup" class="z-depth-3 btn blue darken-4 waves-effect waves-light">Cadastrar Novo</a>
           </div>
         </form>
+        <%if (message.length > 0) {%>
+          <div class="flash-error z-depth-3"><%=message%></div>
+        <%}%>
       </div>
 
     

@@ -9,6 +9,7 @@ var express = require('express')
   , path = require('path')
   , passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
+  , flash = require('connect-flash');
 ;
 
 global.db = require('mongoose');
@@ -19,7 +20,7 @@ conection.once('open', function() {
   console.log('Conectado ao MongoDB corretamente ...')  
 });
 
-db.connect('mongodb://127.0.0.1:27017/gta');
+db.connect('mongodb://127.0.0.1:27017/GTA');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,10 +35,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'mapaeprosfortes',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  resave: true,
+  saveUninitialized: true
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

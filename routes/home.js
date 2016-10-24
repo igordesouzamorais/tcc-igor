@@ -8,20 +8,21 @@ var isAuthenticated = function (req, res, next) {
     	return next();
 
     res.redirect('/');
-
 }
 
 app.get('/', home.login);
-app.get('/mapa', home.mapa);
-app.get('/home', home.index);
+app.get('/mapa',isAuthenticated, home.mapa);
+app.get('/home',isAuthenticated, home.index);
 app.post('/login', passport.authenticate('login', {
 	successRedirect: '/home', 
-	failureRedirect: '/'
+	failureRedirect: '/',
+	failureFlash : true
 }));
 app.get('/signup', home.signup);
 app.post('/signup', passport.authenticate('signup', {
     successRedirect: '/home',
-    failureRedirect: '/signup'
+    failureRedirect: '/signup',
+    failureFlash : true
   }));
 app.get('/logout', home.logout);
 

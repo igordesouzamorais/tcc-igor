@@ -7,15 +7,15 @@ module.exports = function(app) {
     mapa: function(req, res) {
     	res.render('mapa');
     },
-    login: function (req, res, next){
-      res.render('login');
+    login: function (req, res){
+      res.render('login',{message: req.flash('message')});
     },
     logout: function (req, res){
       req.logout();
       res.redirect('/');
     },
     signup: function (req, res) {
-      res.render('signup');
+      res.render('signup',{message: req.flash('message')});
     }
   };
 

@@ -41,6 +41,9 @@
             <input type="submit" class="btn blue darken-4 waves-effect waves-light" value="Cadastrar">
           </div>
         </form>
+        <%if (message.length > 0) {%>
+          <div class="flash-error"><%=message%></div>
+        <%}%>
       </div>
 
     
