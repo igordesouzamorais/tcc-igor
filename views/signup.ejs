@@ -12,21 +12,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body id="index" class="bg-fundo-mapa">
-      <header>
-        <nav id="menu-mapa" class="blue darken-4">
-          <div class="nav-wrapper">
-            <ul>
-                <a href="#" class="brand-logo">Signup</a>
-                <!--<li class="left"><a href="/" title="Voltar"><i class="material-icons">navigate_before</i></a></li>-->
-                <!--<li class="right"><a href="/mapa" title="Atualizar"><i class="material-icons">loop</i></a></li>-->
-            </ul>
-          </div>
-        </nav>
-      </header>
+    <body>
+      <div class="logo"><img src="/images/logo_grande.png" alt="GTA"></div>      
       <div id="form-signup">
         <form action="/signup" method="post">
-
+          <h1 class="titulo-h1">Cadastro de Usuário</h1>
           <div class="input-field">
             <label for="username">Login</label>
             <input type="text" required name="username" class="validate">
@@ -39,6 +29,7 @@
 
           <div id="submit" class="center-align">
             <input type="submit" class="btn blue darken-4 waves-effect waves-light" value="Cadastrar">
+            <a href="/" class="z-depth-3 btn blue darken-4 waves-effect waves-light">Voltar</a>
           </div>
         </form>
         <%if (message.length > 0) {%>

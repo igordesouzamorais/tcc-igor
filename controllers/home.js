@@ -1,11 +1,10 @@
 module.exports = function(app) {
   var HomeController = {
     index: function(req, res) {
-      console.log(req.user);
-      res.render('index');
+      res.render('index', {user:req.user});
     },
     mapa: function(req, res) {
-    	res.render('mapa');
+    	res.render('mapa', {user:req.user});
     },
     login: function (req, res){
       res.render('login',{message: req.flash('message')});

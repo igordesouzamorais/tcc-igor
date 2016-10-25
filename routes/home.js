@@ -7,20 +7,27 @@ var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
     	return next();
 
+    res.redirect('/login');
+}
+
+var isNotAuthenticated = function (req, res, next) {
+    if (!req.isAuthenticated())
+        return next();
+
     res.redirect('/');
 }
 
-app.get('/', home.login);
+app.get('/',isAuthenticated, home.index);
 app.get('/mapa',isAuthenticated, home.mapa);
-app.get('/home',isAuthenticated, home.index);
+app.get('/login', isNotAuthenticated, home.login);
 app.post('/login', passport.authenticate('login', {
-	successRedirect: '/home', 
-	failureRedirect: '/',
+	successRedirect: '/', 
+	failureRedirect: '/login',
 	failureFlash : true
 }));
 app.get('/signup', home.signup);
 app.post('/signup', passport.authenticate('signup', {
-    successRedirect: '/home',
+    successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash : true
   }));
