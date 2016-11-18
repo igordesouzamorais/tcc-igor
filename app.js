@@ -20,7 +20,19 @@ conection.once('open', function() {
   console.log('Conectado ao MongoDB corretamente ...')  
 });
 
-db.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/GTA');
+var uristring = 
+  process.env.MONGODB_URI || 
+  'mongodb://localhost/HelloMongoose';
+
+db.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});  
+
+//db.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/GTA');
 //db.connect('mongodb://127.0.0.1:27017/GTA');
 
 // uncomment after placing your favicon in /public
