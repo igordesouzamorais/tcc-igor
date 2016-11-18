@@ -88,7 +88,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-server.listen(1234, function(){
+server.listen((process.env.PORT || 5000), function(){
   console.log("Server tcc-igor executando corretamente ...");
 });
 
