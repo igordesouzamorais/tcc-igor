@@ -1,4 +1,5 @@
 module.exports = function(app) {
+  var users = app.models.user;
   var HomeController = {
     index: function(req, res) {
       res.render('index', {user:req.user});
@@ -15,6 +16,18 @@ module.exports = function(app) {
     },
     signup: function (req, res) {
       res.render('signup',{message: req.flash('message')});
+    },
+    usuarios: function (req, res) {
+      users.find(function (err, valores) {
+        res.render('usuarios', {usuarios: valores});
+      });
+    },
+    excluir: function (req, res) {
+      users.remove({_id:req.params.id}, function (err) {
+        console.log(err);
+      });
+
+      res.redirect('/');
     }
   };
 

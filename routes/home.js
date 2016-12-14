@@ -32,5 +32,7 @@ app.post('/signup', passport.authenticate('signup', {
     failureFlash : true
   }));
 app.get('/logout', home.logout);
+app.get('/usuarios', isAuthenticated, home.usuarios);
+app.get('/excluir/:id', home.excluir);
 
 };

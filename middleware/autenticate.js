@@ -74,8 +74,7 @@ passport.use('signup', new LocalStrategy({
       // Delay the execution of findOrCreateUser and execute the method
       // in the next tick of the event loop
       process.nextTick(findOrCreateUser);
-  })
-);
+}));
 
 // Generates hash using bCrypt
 var createHash = function(password){

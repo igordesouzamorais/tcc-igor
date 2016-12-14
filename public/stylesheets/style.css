@@ -144,7 +144,16 @@ label{
 }
 
 .logout{
-	width: 110px;
+	
+	color: white !important;
+	margin: 0 auto !important;
+	height: 50px !important;
+	line-height: 50px !important;
+	margin-top: 15px !important;
+}
+
+.newuser{
+	
 	color: white !important;
 	margin: 0 auto !important;
 	height: 50px !important;
@@ -175,4 +184,37 @@ label{
 	font-size: 2em;
 	text-align: center;
 	color: #0d47a1;
+}
+
+/*usuarios*/
+
+#tela-usuarios{
+	width: 80%;
+	margin: 0 auto;	
+	margin-top: 20px;
+}
+
+#tela-usuarios li{
+	font-family: 'Roboto';
+	margin-bottom: 10px;
+	height: 50px;
+	border-bottom: 1px solid black;
+}
+
+#tela-login li a{
+	color: black;
+	z-index:10;
+}
+
+.titulo-user{
+	height: 55px;
+	width: 100px;
+	position: relative;
+	color: white;
+	margin: 0 auto;
+	margin-top: 0;
+	text-align: center;
+	font-family: 'Roboto';
+	font-size: 2em;
+	z-index:9;
 }

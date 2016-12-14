@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>GTA - Usuários</title>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/stylesheets/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="/stylesheets/style.css" />
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <nav id="menu-mapa" class="blue darken-4">
+        <div class="nav-wrapper">
+          <ul id="nav-mobile">
+            <li class="left"><a href="/" title="Voltar"><i class="material-icons">&#xE408;</i></a></li>
+            <li class="titulo-user">Usuários</li>
+          </ul>
+        </div>  
+      </nav>
+      <div id="tela-usuarios">
+        <%if (usuarios.length > 1){%>
+        <ul>
+          <%usuarios.forEach(function(valor){%>
+          <%if (valor.username != 'admin'){%><li><%=valor.username%><a class="right" href="/excluir/<%=valor.id%>"><i class="small material-icons">delete</i></a></li><%}%>
+          <%});%>
+        </ul>
+        <%}%>
+      </div>
+
+    
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="/javascripts/materialize.min.js"></script>
+      <script type="text/javascript" src="/javascripts/main.js"></script>
+    </body>
+  </html>

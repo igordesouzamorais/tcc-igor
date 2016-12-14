@@ -20,11 +20,18 @@
           	<li class="center">
               <label for="caminho">Caminho JSON</label>
               <input id="caminho" placeholder="Caminho JSON" type="text" class="validate">
+              <input type="button" data-activates="slide-out" value="Salvar Caminho" id="salvar" class="btn voltar blue darken-4" />
             </li>
-          	<li class="center">
-              <input type="button" data-activates="slide-out" value="Salvar" id="salvar" class="btn voltar blue darken-4"></input>
-          	  <input type="button" data-activates="slide-out" value="Voltar" class="btn voltar blue darken-4">
+          	<%if (user.username == 'admin'){%>
+            <li class="center">
+          	  <!--<input type="button" data-activates="slide-out" value="Voltar" class="btn voltar blue darken-4" />-->
+              <!--<input type="button" value="Novo Usuário" class="btn voltar blue darken-4" />-->
+              <a href="/signup" class="btn blue darken-4 voltar newuser">Cadastrar Usuário</a>
+              <a href="/usuarios" class="btn blue darken-4 voltar newuser">Excluir Usuário</a>
               <!--<input type="button" data-activates="slide-out" value="Logout" class="btn voltar blue darken-4">-->
+            </li>
+            <%}%>
+            <li class="center">
               <a href="/logout" class="voltar red darken-1 btn logout">Logout</a>
             </li>
           </ul>
