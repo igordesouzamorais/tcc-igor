@@ -31,6 +31,11 @@
               <!--<input type="button" data-activates="slide-out" value="Logout" class="btn voltar blue darken-4">-->
             </li>
             <%}%>
+            <%if (user.username != 'admin'){%>
+            <li class="center">
+              <a href="/alterardados" class="btn blue darken-4 voltar alterarsenha">Alterar Dados</a>
+            </li>
+            <%}%>
             <li class="center">
               <a href="/logout" class="voltar red darken-1 btn logout">Logout</a>
             </li>

@@ -161,6 +161,14 @@ label{
 	margin-top: 15px !important;
 }
 
+.alterarsenha{
+	color: white !important;
+	margin: 0 auto !important;
+	height: 50px !important;
+	line-height: 50px !important;
+	margin-top: 15px !important;
+}
+
 
 .logo{
 	width: 100%;
@@ -217,4 +225,21 @@ label{
 	font-family: 'Roboto';
 	font-size: 2em;
 	z-index:9;
+}
+
+.titulo-senha{
+	height: 55px;
+	width: 100%;
+	position: absolute;
+	margin: 0 auto;
+	color: white;
+	text-align: center;
+	font-family: 'Roboto';
+	font-size: 2em;
+	z-index: 0;
+}
+
+.voltarsenha{
+	position: absolute;
+	z-index: 1;
 }

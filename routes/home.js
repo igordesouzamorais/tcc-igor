@@ -34,5 +34,7 @@ app.post('/signup', passport.authenticate('signup', {
 app.get('/logout', home.logout);
 app.get('/usuarios', isAuthenticated, home.usuarios);
 app.get('/excluir/:id', home.excluir);
+app.get('/alterardados', home.alterardados);
+app.post('/alterar/:id', home.alterar);
 
 };

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>GTA - Alteração de Senha</title>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/stylesheets/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="/stylesheets/style.css" />
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <nav id="menu-mapa" class="blue darken-4">
+        <div class="nav-wrapper">
+          <ul id="nav-mobile">
+            <li class="left voltarsenha"><a href="/" title="Voltar"><i class="material-icons">&#xE408;</i></a></li>
+            <li class="center titulo-senha">Alteração de Dados</li>
+          </ul>
+        </div>  
+      </nav>
+      <div id="tela-usuarios">
+        <form action="/alterar/<%=user.id%>" method="post">
+          
+          <div class="input-field">
+            <label for="usuario">Nome de Usuário</label>
+            <input type="text" required name="usuario" class="validate" value="<%=user.username%>" />
+          </div>
+
+          <div class="input-field">
+            <label for="senha">Senha</label>
+            <input type="password" required name="senha" class="validate">
+          </div>
+
+          <div class="input-field">
+            <label for="newpassword">Nova Senha</label>
+            <input type="password" required name="newpassword" class="validate">
+          </div>
+
+          <div id="submit" class="center-align">
+            <input type="submit" class="btn blue darken-4 waves-effect waves-light" value="Atualizar">
+            <a href="/" class="z-depth-3 btn blue darken-4 waves-effect waves-light">Voltar</a>
+          </div>
+        </form>
+      </div>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="/javascripts/materialize.min.js"></script>
+      <script type="text/javascript" src="/javascripts/main.js"></script>
+    </body>
+</html>

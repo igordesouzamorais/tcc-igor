@@ -28,6 +28,12 @@ module.exports = function(app) {
       });
 
       res.redirect('/');
+    },
+    alterardados: function (req, res) {
+      res.render('alterardados', {user: req.user});
+    },
+    alterar: function (req, res) {
+      res.redirect('/');
     }
   };
 
